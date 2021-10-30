@@ -19,7 +19,6 @@ mongoose.connect(uri, {
 
 app.use("/pantry", require('./routes/pantryRouter'));
 app.use("/recipes", require('./routes/recipeRouter'));
-app.use("/users", require('./routes/usersRouter'));
 
 const connection = mongoose.connection;
 

@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const auth = require('../middleware/auth');
 let Items = require('../models/items');
 
 router.route("/").get((req, res) => {
