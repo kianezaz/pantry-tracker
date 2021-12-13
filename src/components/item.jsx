@@ -4,13 +4,6 @@ const moment = require('moment');
 const Item = (props) => {
     const currDate = new Date().toISOString();
     const textColor = props.item.expirationDate > currDate ? "text-dark" : "text-danger";
-    console.log(props.item.expirationDate + " vs. " + currDate);
-    if (props.item.expirationDate > currDate) {
-        console.log("Not expired");
-    }
-    else {
-        console.log("Expired");
-    }
     return (
         <tr>
             <td className={textColor}>{props.item.name}</td>

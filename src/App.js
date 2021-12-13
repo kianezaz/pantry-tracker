@@ -5,7 +5,7 @@ import ItemsList from './components/itemsList';
 import AddItem from './components/addItem';
 import RecipeList from './components/recipeList';
 import axios from 'axios';
-import Navbar from './components/navbar';
+import Navbar from './components/Navbar/index';
 
 function App() {
 
