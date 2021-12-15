@@ -1,13 +1,16 @@
 const express = require('express');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 require("dotenv").config();
 
 const app = express();
 
+const urlEncodedParser = bodyParser.urlencoded({ extended: false });
+app.use(bodyParser.json(), urlEncodedParser);
+
 app.use(cors());
-app.use(express.json());
 
 const uri = process.env.MONGODB_URI;
 
@@ -19,6 +22,7 @@ mongoose.connect(uri, {
 
 app.use("/pantry", require('./routes/pantryRouter'));
 app.use("/recipes", require('./routes/recipeRouter'));
+app.use("/user", require('./routes/userRouter'));
 
 const connection = mongoose.connection;
 
