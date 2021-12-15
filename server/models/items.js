@@ -14,6 +14,10 @@ const ItemSchema = new mongoose.Schema({
     expirationDate: {
         type: Date,
         required: true
+    },
+    user: {
+        type: mongoose.ObjectId,
+        required: true
     }
 }, {
     timestamps: true
