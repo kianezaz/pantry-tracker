@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {Route, Switch, useLocation} from "react-router-dom";
 import { useState, useEffect } from 'react';
 import ItemsList from './components/itemsList';
 import AddItem from './components/addItem';
@@ -7,6 +7,7 @@ import RecipeList from './components/recipeList';
 import Login from './components/login';
 import Register from './components/register';
 import AuthService from './services/authService';
+import authHeader from './services/authHeader';
 import axios from 'axios';
 import Navbar from './components/Navbar/index';
 
@@ -14,19 +15,29 @@ function App() {
 
   const [list, setList] = useState([]);
 
+  const location = useLocation();
+
   useEffect(() => {
-      axios.get("http://localhost:5000/pantry?userId=" + AuthService.getCurrentUser().id)
+    const user = AuthService.getCurrentUser();
+
+    if (user) {
+      axios.get("http://localhost:5000/pantry?userId=" + user.id, {
+        headers: authHeader()
+      })
           .then(res => {
-              setList(res.data);
+            setList(res.data);
           })
           .catch(err => console.log(err));
-  }, []);
+    }
+  }, [location.key]);
 
 
   function incrementItem(item) {
       const newCount = item.count + 1;
-      axios.put(`http://localhost:5000/pantry/${item._id}`, {
+      axios.put('http://localhost:5000/pantry?id=' + item._id, {
           count: newCount
+      }, {
+        headers: authHeader()
       });
       const updatedList = [...list];
       const index = updatedList.indexOf(item);
@@ -40,8 +51,10 @@ function App() {
           deleteItem(item);
       }
       else {
-          axios.put(`http://localhost:5000/pantry/${item._id}`, {
+          axios.put('http://localhost:5000/pantry?id=' + item._id, {
               count: newCount
+          }, {
+            headers: authHeader()
           });
           const updatedList = [...list];
           const index = updatedList.indexOf(item);
@@ -51,7 +64,9 @@ function App() {
   }
 
   function deleteItem(item) {
-    axios.delete(`http://localhost:5000/pantry/${item._id}`);
+    axios.delete('http://localhost:5000/pantry/?id=' + item._id + "&userId=" + AuthService.getCurrentUser().id, {
+      headers: authHeader()
+    });
     setList(list.filter(currItem => currItem !== item));
   }
 
@@ -92,7 +107,6 @@ function App() {
   }
 
   return (
-    <Router>
       <div>
         <Navbar />
 
@@ -117,7 +131,6 @@ function App() {
           </Route>
         </Switch>
       </div>
-    </Router>
   )
 }
 
