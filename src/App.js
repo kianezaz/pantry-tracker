@@ -6,6 +6,7 @@ import AddItem from './components/addItem';
 import RecipeList from './components/recipeList';
 import Login from './components/login';
 import Register from './components/register';
+import AuthService from './services/authService';
 import axios from 'axios';
 import Navbar from './components/Navbar/index';
 
@@ -14,7 +15,7 @@ function App() {
   const [list, setList] = useState([]);
 
   useEffect(() => {
-      axios.get("http://localhost:5000/pantry?userId=" + JSON.parse(localStorage.getItem("user")).id)
+      axios.get("http://localhost:5000/pantry?userId=" + AuthService.getCurrentUser().id)
           .then(res => {
               setList(res.data);
           })

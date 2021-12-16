@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import Item from './item';
 import Dropdown from 'react-bootstrap/Dropdown'
 

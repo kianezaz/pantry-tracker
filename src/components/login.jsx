@@ -24,12 +24,7 @@ const Login = (props) => {
 
         AuthService.login(username, password)
         .then(res => {
-            history.push({
-                pathname: "/pantry",
-                state: {
-                    userId: res.id
-                }
-            });
+            history.push({ pathname: "/pantry" });
         },
         err => {
             const resMessage = (
