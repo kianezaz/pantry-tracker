@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import Datepicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
 import axios from 'axios';
+import AuthService from '../services/authService';
+import authHeader from '../services/authHeader';
 import moment from 'moment';
 
 class AddItem extends React.Component {
@@ -97,16 +99,19 @@ class AddItem extends React.Component {
         const item = {
             name: this.state.name,
             count: this.state.count,
-            expirationDate: new Date(year, month, day)
+            expirationDate: new Date(year, month, day),
+            userId: AuthService.getCurrentUser().id
         };
 
-        axios.post("http://localhost:5000/pantry/add", item)
+        axios.post("http://localhost:5000/pantry/add", item, {
+            headers: authHeader()
+        })
             .then(res => {
                 console.log(res.data);
                 this.props.itemHandler(res.data);
             });
 
-        window.location = '/'
+        window.location = '/pantry'
     }
 
     onChangeDate(e) {
