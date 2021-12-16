@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import ItemsList from './components/itemsList';
 import AddItem from './components/addItem';
 import RecipeList from './components/recipeList';
+import Login from './components/login';
+import Register from './components/register';
 import axios from 'axios';
 import Navbar from './components/Navbar/index';
 
@@ -12,7 +14,7 @@ function App() {
   const [list, setList] = useState([]);
 
   useEffect(() => {
-      axios.get("http://localhost:5000/pantry")
+      axios.get("http://localhost:5000/pantry?userId=" + JSON.parse(localStorage.getItem("user")).id)
           .then(res => {
               setList(res.data);
           })
@@ -95,13 +97,22 @@ function App() {
 
         <Switch>
           <Route exact path="/">
+            <Login />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Route exact path="/pantry">
             <ItemsList items={list} onIncrement={incrementItem} onDecrement={decrementItem} onDelete={deleteItem} sortByName={sortByName} sortByExpirationDate={sortByExpirationDate}/>
           </Route>
-          <Route path="/add">
+          <Route exact path="/add">
             <AddItem itemHandler={handleNewItem}/>
           </Route>
           <Route exact path = "/recipes">
             <RecipeList items={list} />
+          </Route>
+          <Route exact path = "/signup">
+            <Register />
           </Route>
         </Switch>
       </div>

@@ -3,9 +3,30 @@ let Items = require('../models/items');
 let User = require('../models/user');
 
 router.route("/").get((req, res) => {
-    Items.find()
-        .then(items => res.json(items))
-        .catch(err => res.status(400).json("Error: " + err));
+    User.findById(req.query.userId)
+        .exec((err, user) => {
+            if (err) {
+                res.status(500).send({ message: err });
+                return;
+            }
+
+            const itemPromises = user.items.map(async function(itemId) {
+                let item = await new Promise((resolve, reject) => {
+                    Items.findById(itemId)
+                    .exec((err, item) => {
+                        if (err) {
+                            reject(err);
+                        }
+
+                        resolve(item);
+                    });
+                });
+                return item;
+            });
+            Promise.all(itemPromises).then(items => {
+                res.json(items);
+            })
+        })
 });
 
 router.route("/add").post((req, res) => {
@@ -16,23 +37,17 @@ router.route("/add").post((req, res) => {
         user: req.body.user
     });
     newItem.save()
-        .then((err, savedItem) => {
-            if (err) {
-                res.status(500).send({ message: err });
-            }
-            User.findOne({ id: req.body.user })
+        .then((savedItem) => {
+            User.findById(req.body.user)
                 .exec((err, user) => {
                     if (err) {
                         res.status(500).send({ message: err });
                         return;
                     }
 
-                    user.recipes.push(savedItem._id);
-                    user.save((err, updatedUser) => {
-                        if (err) {
-                            res.status(500).send({ message: err });
-                            return;
-                        }
+                    user.items.push(savedItem._id);
+                    user.save()
+                        .then((updatedUser) => {
 
                         res.status(200).send({
                             itemAdded: savedItem,
