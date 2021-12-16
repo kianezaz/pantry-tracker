@@ -62,7 +62,6 @@ const Register = (props) => {
                             onChange={onChangeEmail}
                         />
                     </div>
-                    <span id="first-name-error">Please enter a first name</span>
                     <div className="form-group">
                         <label>Username: </label>
                         <input 
