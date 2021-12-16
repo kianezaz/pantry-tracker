@@ -10,6 +10,7 @@ import AuthService from './services/authService';
 import authHeader from './services/authHeader';
 import axios from 'axios';
 import Navbar from './components/Navbar/index';
+import PrivateRoute from './components/privateRoute';
 
 function App() {
 
@@ -111,24 +112,12 @@ function App() {
         <Navbar />
 
         <Switch>
-          <Route exact path="/">
-            <Login />
-          </Route>
-          <Route exact path="/login">
-            <Login />
-          </Route>
-          <Route exact path="/pantry">
-            <ItemsList items={list} onIncrement={incrementItem} onDecrement={decrementItem} onDelete={deleteItem} sortByName={sortByName} sortByExpirationDate={sortByExpirationDate}/>
-          </Route>
-          <Route exact path="/add">
-            <AddItem itemHandler={handleNewItem}/>
-          </Route>
-          <Route exact path = "/recipes">
-            <RecipeList items={list} />
-          </Route>
-          <Route exact path = "/signup">
-            <Register />
-          </Route>
+          <Route exact path = "/signup" component={Register} />
+          <Route exact path="/" component={Login}/>
+          <Route exact path="/login" component={Login} />
+          <PrivateRoute exact path="/pantry" render={(props) => <ItemsList {...props} items={list} onIncrement={incrementItem} onDecrement={decrementItem} onDelete={deleteItem} sortByName={sortByName} sortByExpirationDate={sortByExpirationDate} />} />
+          <PrivateRoute exact path="/add" render={(props) => <AddItem itemHandler={handleNewItem} />} />
+          <PrivateRoute exact path = "/recipes" render={(props) => <RecipeList items={list} />} />
         </Switch>
       </div>
   )
