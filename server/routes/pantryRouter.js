@@ -5,7 +5,7 @@ const pantryController = require('../controllers/pantry');
 const authJwt = require("../middleware/authJwt");
 
 
-router.route("/").get(pantryController.getUserItemsById);
+router.route("/").get(authJwt, pantryController.getUserItemsById);
 
 router.route("/add").post(authJwt, pantryController.addRecipe);
 
