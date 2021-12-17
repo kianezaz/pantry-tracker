@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import {Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink} from './NavbarElements'
+import {Nav, NavLink, Bars, NavMenu, NavBtn, SignOutBtn} from './NavbarElements'
+import AuthService from '../../services/authService';
 
 const Navbar = (props) => {
+    function onSignOut(e) {
+        AuthService.logout();
+        window.location = "/login";
+    }
+
     if (!props.isLoggedIn) {
-        console.log("here");
         return null;
     }
     return (
@@ -26,7 +31,7 @@ const Navbar = (props) => {
                     </NavLink>
                 </NavMenu>
                 <NavBtn>
-                    <NavBtnLink to="/signup">Sign Up</NavBtnLink>
+                    <SignOutBtn onClick={onSignOut}>Sign Out</SignOutBtn>
                 </NavBtn>
             </Nav>
         </div>
