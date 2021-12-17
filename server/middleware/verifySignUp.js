@@ -13,7 +13,8 @@ function verifySignUp(req, res, next) {
                 return;
             }
 
-            User.findOne({ email: req.body.email })
+            else {
+                User.findOne({ email: req.body.email })
                 .exec((err, user) => {
                     if (err) {
                         res.status(500).send({ message: err });
@@ -24,9 +25,12 @@ function verifySignUp(req, res, next) {
                         res.status(400).send({ message: "Email is already taken"});
                         return;
                     }
+                    else {
+                        next();
+                    }
                 });
+            }
 
-                next();
         });
 }
 
