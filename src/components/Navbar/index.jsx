@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink} from './NavbarElements'
 
-const Navbar = () => {
+const Navbar = (props) => {
+    if (!props.isLoggedIn) {
+        console.log("here");
+        return null;
+    }
     return (
         <div>
             <Nav>
@@ -11,7 +15,7 @@ const Navbar = () => {
                 </NavLink>
                 <Bars />
                 <NavMenu>
-                    <NavLink to="/">
+                    <NavLink to="/pantry">
                         Home
                     </NavLink>
                     <NavLink to="/add">
