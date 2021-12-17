@@ -52,7 +52,6 @@ const Register = (props) => {
     }
 
     function onLogin(e) {
-        console.log('here');
         window.location="/login"
     }
 

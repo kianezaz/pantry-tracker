@@ -16,14 +16,12 @@ exports.getItemById = (req, res) => {
 }
 
 exports.getUserItemsById = (req, res) => {
-    console.log("user: " + req.query.userId);
     User.findById(req.query.userId)
         .exec((err, user) => {
             if (err) {
                 res.status(500).send({ message: err });
                 return;
             }
-            console.log("here");
 
             const itemPromises = user.items.map(async function(itemId) {
                 let item = await new Promise((resolve, reject) => {

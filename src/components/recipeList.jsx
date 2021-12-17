@@ -40,7 +40,6 @@ const RecipeList = (props) => {
                     });
             })
         }
-        console.log("here");
         return () => { mounted = false };
     }, []);
 
