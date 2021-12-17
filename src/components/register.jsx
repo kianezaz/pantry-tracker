@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import './register.css';
+import background from '../grocery-produce.jpg';
+
 
 import AuthService from '../services/authService';
 
@@ -49,46 +52,56 @@ const Register = (props) => {
     }
 
     return (
-        <div>
+        <div style={{ 
+            backgroundImage: `url(${background})`,
+            height: "100vh",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover"
+          }}>
             {!success && (
-                <form onSubmit={onSubmit}>
-                    <div className="form-group">
-                        <label>Email: </label>
-                        <input 
-                            required 
-                            type="email" 
-                            className="form-control"
-                            value={email}
-                            onChange={onChangeEmail}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Username: </label>
-                        <input 
-                            required 
-                            type="text" 
-                            className="form-control"
-                            value={username}
-                            onChange={onChangeUsername}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Password: </label>
-                        <input 
-                            required 
-                            type="password" 
-                            className="form-control"
-                            value={password}
-                            onChange={onChangePassword}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <input 
-                            type="submit"
-                            className="btn btn-primary"
-                        />
-                    </div>
-                </form>
+                <div className="form-container">
+                    <form onSubmit={onSubmit}>
+                        <div className="form-group">
+                            <label>Email: </label>
+                            <input 
+                                required 
+                                type="email" 
+                                className="form-control"
+                                value={email}
+                                onChange={onChangeEmail}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Username: </label>
+                            <input 
+                                required 
+                                type="text" 
+                                className="form-control"
+                                value={username}
+                                onChange={onChangeUsername}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Password: </label>
+                            <input 
+                                required 
+                                type="password" 
+                                className="form-control"
+                                value={password}
+                                onChange={onChangePassword}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <input 
+                                id="submit-button"
+                                type="submit"
+                                value="Register"
+                            />
+                        </div>
+                    </form>
+                </div>
+                
             )}
             
             {message && (

@@ -55,7 +55,7 @@ form {
 
 #register-button {
     margin-top: 20px;
-    background: none;
+    background: none !important;
     border: none;
     margin-left: 35px;
 }
