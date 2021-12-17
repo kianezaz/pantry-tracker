@@ -109,7 +109,7 @@ function App() {
 
   return (
       <div>
-        <Navbar />
+        <Navbar isLoggedIn={AuthService.getCurrentUser()}/>
 
         <Switch>
           <Route exact path = "/signup" component={Register} />
