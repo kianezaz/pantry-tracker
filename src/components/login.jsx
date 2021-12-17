@@ -1,7 +1,7 @@
 import './login.css';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import background from '../grocery-produce.jpg';
+import background from '../assets/grocery-produce.jpg'
 
 import AuthService from '../services/authService';
 

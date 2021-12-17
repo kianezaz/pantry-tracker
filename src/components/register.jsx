@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './register.css';
-import background from '../grocery-produce.jpg';
+import background from '../assets/grocery-produce.jpg'
 
 
 import AuthService from '../services/authService';
@@ -49,6 +49,11 @@ const Register = (props) => {
                 setSuccess(false);
             }
         );
+    }
+
+    function onLogin(e) {
+        console.log('here');
+        window.location="/login"
     }
 
     return (
@@ -102,6 +107,10 @@ const Register = (props) => {
                     </form>
                 </div>
                 
+            )}
+
+            {success && (
+                <button id="success" className="btn btn-primary" onClick={onLogin}>Click to Log In</button>
             )}
             
             {message && (
