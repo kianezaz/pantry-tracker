@@ -56,7 +56,7 @@ export const NavBtn = styled.nav`
     }
 `
 
-export const NavBtnLink = styled(Link)`
+export const SignOutBtn = styled.button`
     border-radius: 4px;
     background: #256ce1;
     padding: 10px 22px;
