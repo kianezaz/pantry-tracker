@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/pantry-tracker/static/css/main.d478faf9.chunk.css",
+    "main.js": "/pantry-tracker/static/js/main.6791ecfb.chunk.js",
+    "main.js.map": "/pantry-tracker/static/js/main.6791ecfb.chunk.js.map",
+    "runtime-main.js": "/pantry-tracker/static/js/runtime-main.1e7ef48c.js",
+    "runtime-main.js.map": "/pantry-tracker/static/js/runtime-main.1e7ef48c.js.map",
+    "static/css/2.452202d3.chunk.css": "/pantry-tracker/static/css/2.452202d3.chunk.css",
+    "static/js/2.c0595c35.chunk.js": "/pantry-tracker/static/js/2.c0595c35.chunk.js",
+    "static/js/2.c0595c35.chunk.js.map": "/pantry-tracker/static/js/2.c0595c35.chunk.js.map",
+    "static/js/3.22a1a162.chunk.js": "/pantry-tracker/static/js/3.22a1a162.chunk.js",
+    "static/js/3.22a1a162.chunk.js.map": "/pantry-tracker/static/js/3.22a1a162.chunk.js.map",
+    "index.html": "/pantry-tracker/index.html",
+    "static/css/2.452202d3.chunk.css.map": "/pantry-tracker/static/css/2.452202d3.chunk.css.map",
+    "static/css/main.d478faf9.chunk.css.map": "/pantry-tracker/static/css/main.d478faf9.chunk.css.map",
+    "static/js/2.c0595c35.chunk.js.LICENSE.txt": "/pantry-tracker/static/js/2.c0595c35.chunk.js.LICENSE.txt",
+    "static/media/grocery-produce.74e712c1.jpg": "/pantry-tracker/static/media/grocery-produce.74e712c1.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1e7ef48c.js",
+    "static/css/2.452202d3.chunk.css",
+    "static/js/2.c0595c35.chunk.js",
+    "static/css/main.d478faf9.chunk.css",
+    "static/js/main.6791ecfb.chunk.js"
+  ]
+}
