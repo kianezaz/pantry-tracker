@@ -1,8 +1,6 @@
 # pantry-tracker
 A full-stack CRUD web application that serves as a pantry/fridge management tool to help users keep track of what items they currently have at home as well as their expiration dates. Additionally, the application uses the Spoonacular API to recommend recipes for the user based on the current state of their pantry/fridge.
 
-Try it out [here](https://kianezaz.github.io/pantry-tracker/)
-
 ## Technologies used
 - Node.js
 - React.js
